@@ -33,16 +33,27 @@ public class Workspace extends Gmail{
         Collections.sort(calendar, new Comparator<Meeting>() {
             @Override
             public int compare(Meeting o1, Meeting o2) {
-                if(o1.getStartTime().compareTo(o2.getStartTime())<0) return -1;
-                else if(o1.getStartTime().compareTo(o2.getStartTime())>0) return 1;
+                if(o1.getEndTime().compareTo(o2.getEndTime())<0) return -1;
+                else if(o1.getEndTime().compareTo(o2.getEndTime())>0) return 1;
                 else return 0;
             }
         });
-        for(int i=0;i<calendar.size()-1;i++){
-            start=calendar.get(i).getStartTime();
-            end=calendar.get(i).getEndTime();
-            next_start=calendar.get(i+1).getStartTime();
-            if(start.compareTo(next_start)<0 && next_start.compareTo(end)>0) count++;
+        /*for(int i=0;i<calendar.size();i++){
+            System.out.println(calendar.get(i).getStartTime()+" "+calendar.get(i).getEndTime());
+        }*/
+        int i=0;
+        start=calendar.get(i).getStartTime();
+        end=calendar.get(i).getEndTime();
+        //System.out.println("#"+calendar.get(i).getStartTime()+" "+calendar.get(i).getEndTime());
+        for(i=1;i<calendar.size();i++){
+            next_start=calendar.get(i).getStartTime();
+            //System.out.println(calendar.get(i).getStartTime()+" "+calendar.get(i).getEndTime());
+            if(next_start.compareTo(end)>0){
+                //System.out.println("#"+calendar.get(i).getStartTime()+" "+calendar.get(i).getEndTime());
+                start=calendar.get(i).getStartTime();
+                end=calendar.get(i).getEndTime();
+                count++;
+            }
         }
         return count;
     }
