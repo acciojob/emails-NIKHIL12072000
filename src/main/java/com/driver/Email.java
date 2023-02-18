@@ -26,7 +26,7 @@ public class Email {
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
         boolean c1=false,c2=false,c3=false,c4=false,c5=false;
-        if(oldPassword.equals(newPassword)){
+        if(oldPassword.equals(password)){
             if(newPassword.length()>=8){
                 c1=true;
                 for(int i=0;i<newPassword.length();i++){
